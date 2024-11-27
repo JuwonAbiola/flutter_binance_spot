@@ -1,4 +1,4 @@
-# binance_spot
+# binance_spot_plus
 
 ## Important Notice 
 This project is forked from [binance_spot](https://github.com/AmauryBuguet/binance_spot)
