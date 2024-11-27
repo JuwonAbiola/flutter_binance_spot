@@ -1,5 +1,5 @@
 /// Unofficial Dart wrapper for Binance SPOT API (REST endpoints + Websockets).
-library binance_spot;
+library binance_spot_plus;
 
 export 'src/binance_spot_api.dart';
 

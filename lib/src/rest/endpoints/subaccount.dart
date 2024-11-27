@@ -32,7 +32,7 @@ extension SubaccountEndpoints on BinanceSpot {
   }
 
   /// Get list of all subaccounts
-  Future<Either<String, SubaccountList>> querySubaccountList({
+  Future<Either<String, SubAccountList>> querySubaccountList({
     String? email,
     bool? isFreeze,
     int? page,
@@ -52,11 +52,11 @@ extension SubaccountEndpoints on BinanceSpot {
       keyRequired: true,
       signatureRequired: true,
       timestampRequired: true,
-    ).then((r) => r.isLeft ? Left(r.left) : Right(SubaccountList.fromMap(r.right)));
+    ).then((r) => r.isLeft ? Left(r.left) : Right(SubAccountList.fromMap(r.right)));
   }
 
   /// Get spot assets transfer history for all subaccounts
-  Future<Either<String, List<SubaccountTransfer>>> querySubaccountSpotAssetTransferHistory({
+  Future<Either<String, List<SubAccountTransfer>>> querySubaccountSpotAssetTransferHistory({
     String? fromEmail,
     String? toEmail,
     int? startTime,
@@ -80,11 +80,11 @@ extension SubaccountEndpoints on BinanceSpot {
       keyRequired: true,
       signatureRequired: true,
       timestampRequired: true,
-    ).then((r) => r.isLeft ? Left(r.left) : Right(List<SubaccountTransfer>.from(r.right.map((e) => SubaccountTransfer.fromMap(e)))));
+    ).then((r) => r.isLeft ? Left(r.left) : Right(List<SubAccountTransfer>.from(r.right.map((e) => SubAccountTransfer.fromMap(e)))));
   }
 
   /// Get futures assets transfer history for all subaccounts
-  Future<Either<String, SubaccountFuturesTransferHistory>> querySubaccountFuturesAssetTransferHistory({
+  Future<Either<String, SubAccountFuturesTransferHistory>> querySubaccountFuturesAssetTransferHistory({
     required String email,
     String? futuresType,
     int? startTime,
@@ -109,11 +109,11 @@ extension SubaccountEndpoints on BinanceSpot {
       keyRequired: true,
       signatureRequired: true,
       timestampRequired: true,
-    ).then((r) => r.isLeft ? Left(r.left) : Right(SubaccountFuturesTransferHistory.fromMap(r.right)));
+    ).then((r) => r.isLeft ? Left(r.left) : Right(SubAccountFuturesTransferHistory.fromMap(r.right)));
   }
 
   /// Request a futures asset transfer to a subaccount
-  Future<Either<String, SubaccountFuturesTransfer>> subaccountFuturesAssetTransfer({
+  Future<Either<String, SubAccountFuturesTransfer>> subaccountFuturesAssetTransfer({
     required String fromEmail,
     required String toEmail,
     required int futuresType,
@@ -136,11 +136,11 @@ extension SubaccountEndpoints on BinanceSpot {
       keyRequired: true,
       signatureRequired: true,
       timestampRequired: true,
-    ).then((r) => r.isLeft ? Left(r.left) : Right(SubaccountFuturesTransfer.fromMap(r.right)));
+    ).then((r) => r.isLeft ? Left(r.left) : Right(SubAccountFuturesTransfer.fromMap(r.right)));
   }
 
   /// Get list of assets on a subaccount
-  Future<Either<String, SubaccountBalances>> querySubaccountAssets({
+  Future<Either<String, SubAccountBalances>> querySubaccountAssets({
     required String email,
     int? recvWindow,
   }) {
@@ -155,11 +155,11 @@ extension SubaccountEndpoints on BinanceSpot {
       keyRequired: true,
       signatureRequired: true,
       timestampRequired: true,
-    ).then((r) => r.isLeft ? Left(r.left) : Right(SubaccountBalances.fromMap(r.right)));
+    ).then((r) => r.isLeft ? Left(r.left) : Right(SubAccountBalances.fromMap(r.right)));
   }
 
   /// Get BTC valued asset summary of subaccouts.
-  Future<Either<String, SubaccountSpotAssetsSummary>> querySubaccountSpotAssetsSummary({
+  Future<Either<String, SubAccountSpotAssetsSummary>> querySubaccountSpotAssetsSummary({
     String? email,
     int? page,
     int? size,
@@ -177,7 +177,7 @@ extension SubaccountEndpoints on BinanceSpot {
       keyRequired: true,
       signatureRequired: true,
       timestampRequired: true,
-    ).then((r) => r.isLeft ? Left(r.left) : Right(SubaccountSpotAssetsSummary.fromMap(r.right)));
+    ).then((r) => r.isLeft ? Left(r.left) : Right(SubAccountSpotAssetsSummary.fromMap(r.right)));
   }
 
   /// Get Sub-account spot Deposit Address (For Master Account)
@@ -235,7 +235,7 @@ extension SubaccountEndpoints on BinanceSpot {
   }
 
   /// Get Sub-account's Status on Margin/Futures (For Master Account)
-  Future<Either<String, List<SubaccountStatus>>> getSubaccountsStatusonMarginFutures({
+  Future<Either<String, List<SubAccountStatus>>> getSubaccountsStatusonMarginFutures({
     String? email,
     int? recvWindow,
   }) {
@@ -249,7 +249,7 @@ extension SubaccountEndpoints on BinanceSpot {
       keyRequired: true,
       signatureRequired: true,
       timestampRequired: true,
-    ).then((r) => r.isLeft ? Left(r.left) : Right(List<SubaccountStatus>.from(r.right.map((e) => SubaccountStatus.fromMap(e)))));
+    ).then((r) => r.isLeft ? Left(r.left) : Right(List<SubAccountStatus>.from(r.right.map((e) => SubAccountStatus.fromMap(e)))));
   }
 
   /// Enable Margin for Sub-account (For Master Account)
@@ -272,7 +272,7 @@ extension SubaccountEndpoints on BinanceSpot {
   }
 
   /// Get Detail on Sub-account's Margin Account (For Master Account)
-  Future<Either<String, SubaccountMarginDetail>> getSubaccountMarginDetail({
+  Future<Either<String, SubAccountMarginDetail>> getSubaccountMarginDetail({
     required String email,
     int? recvWindow,
   }) {
@@ -287,11 +287,11 @@ extension SubaccountEndpoints on BinanceSpot {
       keyRequired: true,
       signatureRequired: true,
       timestampRequired: true,
-    ).then((r) => r.isLeft ? Left(r.left) : Right(SubaccountMarginDetail.fromMap(r.right)));
+    ).then((r) => r.isLeft ? Left(r.left) : Right(SubAccountMarginDetail.fromMap(r.right)));
   }
 
   /// Get Summary of Sub-account's Margin Account (For Master Account)
-  Future<Either<String, AllSubaccountMarginSummary>> getSubaccountsMarginSummary({
+  Future<Either<String, AllSubAccountMarginSummary>> getSubaccountsMarginSummary({
     int? recvWindow,
   }) {
     Map<String, String> params = {};
@@ -303,7 +303,7 @@ extension SubaccountEndpoints on BinanceSpot {
       signatureRequired: true,
       timestampRequired: true,
       params: params,
-    ).then((r) => r.isLeft ? Left(r.left) : Right(AllSubaccountMarginSummary.fromMap(r.right)));
+    ).then((r) => r.isLeft ? Left(r.left) : Right(AllSubAccountMarginSummary.fromMap(r.right)));
   }
 
   /// Enable Margin for Sub-account (For Master Account)
@@ -326,7 +326,7 @@ extension SubaccountEndpoints on BinanceSpot {
   }
 
   /// Get Detail on Sub-account's Futures Account (For Master Account)
-  Future<Either<String, SubaccountFuturesDetail>> getSubaccountFuturesDetail({
+  Future<Either<String, SubAccountFuturesDetail>> getSubaccountFuturesDetail({
     required String email,
     int? recvWindow,
   }) {
@@ -341,11 +341,11 @@ extension SubaccountEndpoints on BinanceSpot {
       keyRequired: true,
       signatureRequired: true,
       timestampRequired: true,
-    ).then((r) => r.isLeft ? Left(r.left) : Right(SubaccountFuturesDetail.fromMap(r.right)));
+    ).then((r) => r.isLeft ? Left(r.left) : Right(SubAccountFuturesDetail.fromMap(r.right)));
   }
 
   /// Get Summary of Sub-account's Futures Account (For Master Account)
-  Future<Either<String, AllSubaccountFuturesSummary>> getSubaccountsFuturesSummary({
+  Future<Either<String, AllSubAccountFuturesSummary>> getSubaccountsFuturesSummary({
     int? recvWindow,
   }) {
     Map<String, String> params = {};
@@ -357,11 +357,11 @@ extension SubaccountEndpoints on BinanceSpot {
       signatureRequired: true,
       timestampRequired: true,
       params: params,
-    ).then((r) => r.isLeft ? Left(r.left) : Right(AllSubaccountFuturesSummary.fromMap(r.right)));
+    ).then((r) => r.isLeft ? Left(r.left) : Right(AllSubAccountFuturesSummary.fromMap(r.right)));
   }
 
   /// Get Futures Position-Risk of Sub-account (For Master Account)
-  Future<Either<String, List<SubaccountFuturesPositionRisk>>> getSubaccountFuturesPostionRisk({
+  Future<Either<String, List<SubAccountFuturesPositionRisk>>> getSubaccountFuturesPostionRisk({
     required String email,
     int? recvWindow,
   }) {
@@ -377,7 +377,7 @@ extension SubaccountEndpoints on BinanceSpot {
       signatureRequired: true,
       timestampRequired: true,
     ).then((r) =>
-        r.isLeft ? Left(r.left) : Right(List<SubaccountFuturesPositionRisk>.from(r.right.map((e) => SubaccountFuturesPositionRisk.fromMap(e)))));
+        r.isLeft ? Left(r.left) : Right(List<SubAccountFuturesPositionRisk>.from(r.right.map((e) => SubAccountFuturesPositionRisk.fromMap(e)))));
   }
 
   /// Futures Transfer for Sub-account (For Master Account)
@@ -450,7 +450,7 @@ extension SubaccountEndpoints on BinanceSpot {
   }
 
   /// Sub-account Transfer History (For Sub-account)
-  Future<Either<String, List<SubaccountTransferData>>> subaccountTransferHistory({
+  Future<Either<String, List<SubAccountTransferData>>> subaccountTransferHistory({
     String? asset,
     int? type,
     int? startTime,
@@ -472,7 +472,7 @@ extension SubaccountEndpoints on BinanceSpot {
       keyRequired: true,
       signatureRequired: true,
       timestampRequired: true,
-    ).then((r) => r.isLeft ? Left(r.left) : Right(List<SubaccountTransferData>.from(r.right.map((e) => SubaccountTransferData.fromMap(e)))));
+    ).then((r) => r.isLeft ? Left(r.left) : Right(List<SubAccountTransferData>.from(r.right.map((e) => SubAccountTransferData.fromMap(e)))));
   }
 
   /// Universal Transfer (For Master Account)
@@ -514,7 +514,7 @@ extension SubaccountEndpoints on BinanceSpot {
   /// fromEmail and toEmail cannot be sent at the same time.
   /// Return fromEmail equal master account email by default.
   /// Only get the latest history of past 30 days.
-  Future<Either<String, List<SubaccountUniversalTransfer>>> subaccountsQueryUniversalTransferHistory({
+  Future<Either<String, List<SubAccountUniversalTransfer>>> subaccountsQueryUniversalTransferHistory({
     String? fromEmail,
     String? toEmail,
     int? startTime,
@@ -539,7 +539,7 @@ extension SubaccountEndpoints on BinanceSpot {
       signatureRequired: true,
       timestampRequired: true,
     ).then(
-        (r) => r.isLeft ? Left(r.left) : Right(List<SubaccountUniversalTransfer>.from(r.right.map((e) => SubaccountUniversalTransfer.fromMap(e)))));
+        (r) => r.isLeft ? Left(r.left) : Right(List<SubAccountUniversalTransfer>.from(r.right.map((e) => SubAccountUniversalTransfer.fromMap(e)))));
   }
 
   /// Enable Leverage Token for Sub-account (For Master Account)
@@ -587,7 +587,7 @@ extension SubaccountEndpoints on BinanceSpot {
   }
 
   /// Query managed sub-account asset details（For Investor Master Account）
-  Future<Either<String, List<ManagedSubaccountAsset>>> queryManagedSubaccountAssets({
+  Future<Either<String, List<ManagedSubAccountAsset>>> queryManagedSubaccountAssets({
     required String email,
     int? recvWindow,
   }) {
@@ -602,7 +602,7 @@ extension SubaccountEndpoints on BinanceSpot {
       keyRequired: true,
       signatureRequired: true,
       timestampRequired: true,
-    ).then((r) => r.isLeft ? Left(r.left) : Right(List<ManagedSubaccountAsset>.from(r.right.map((e) => ManagedSubaccountAsset.fromMap(e)))));
+    ).then((r) => r.isLeft ? Left(r.left) : Right(List<ManagedSubAccountAsset>.from(r.right.map((e) => ManagedSubAccountAsset.fromMap(e)))));
   }
 
   /// Withdraw assets from the managed sub-account（For Investor Master Account）

@@ -49,6 +49,9 @@ enum TimeInForce {
   }
 
   final String str;
+
+  // toJson
+  String toJson() => str;
 }
 
 enum OrderType {

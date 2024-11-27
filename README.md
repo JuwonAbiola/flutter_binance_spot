@@ -1,5 +1,10 @@
 # binance_spot
 
+## Important Notice 
+This project is forked from [binance_spot](https://github.com/AmauryBuguet/binance_spot)
+Because the original project's dependencies are not compatible with the latest flutter version, I forked it and made some changes to make it compatible with the latest flutter version.
+
+## Introduction
 This is an unofficial Dart wrapper for Binance SPOT API.  
 For now it includes market, trade, subaccount, and fiat endpoints, as well as support for market and user data streams.  
 Feel free to submit pull requests I will be glad to accept them if they match the coding style.  
@@ -21,19 +26,19 @@ This library has been partially auto-generated (using a custom tool I made), so 
 ### Install
 ```yaml
 dependencies:
-  binance_spot: ^0.0.1
+  binance_spot: ^0.0.3
 ```
 
 or use
 ```
-flutter pub add binance_spot
+flutter pub add binance_spot_plus
 ```
 
 ### Usage
 ```dart
 import 'dart:async';
 
-import 'package:binance_spot/binance_spot.dart';
+import 'package:binance_spot/binance_spot_plus.dart';
 import 'package:flutter/material.dart' hide Interval;
 
 class HomePage extends StatefulWidget {

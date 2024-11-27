@@ -9,6 +9,11 @@ class Balance {
       : asset = m['asset'] ?? m['a'],
         free = double.parse(m['free'] ?? m['f']),
         locked = double.parse(m['locked'] ?? m['l']);
+
+  // toJson
+  Map toJson() {
+    return {"asset": asset, "free": free, "locked": locked};
+  }
 }
 
 class AggTrade {
@@ -30,6 +35,20 @@ class AggTrade {
         timestamp = m['T'],
         isBuyerMaker = m['m'],
         isBestPriceMatch = m['M'];
+
+  // toJson
+  Map toJson() {
+    return {
+      "tradeId": tradeId,
+      "price": price,
+      "qty": qty,
+      "firstTradeId": firstTradeId,
+      "lastTradeId": lastTradeId,
+      "timestamp": timestamp,
+      "isBuyerMaker": isBuyerMaker,
+      "isBestPriceMatch": isBestPriceMatch
+    };
+  }
 }
 
 class WsAccountUpdate {
@@ -42,7 +61,18 @@ class WsAccountUpdate {
       : eventType = m['e'],
         eventTime = m['E'],
         lastUpdateTime = m['u'],
-        balances = (m['B'] as List<dynamic>).map((e) => Balance.fromMap(e)).toList();
+        balances =
+            (m['B'] as List<dynamic>).map((e) => Balance.fromMap(e)).toList();
+
+  // toJson
+  Map toJson() {
+    return {
+      "eventType": eventType,
+      "eventTime": eventTime,
+      "lastUpdateTime": lastUpdateTime,
+      "balances": balances.map((e) => e.toJson()).toList
+    };
+  }
 }
 
 class WsBalanceUpdate {
@@ -58,6 +88,17 @@ class WsBalanceUpdate {
         asset = m['a'],
         delta = double.parse(m['d']),
         clearTime = m['T'];
+
+  // toJson
+  Map toJson() {
+    return {
+      "eventType": eventType,
+      "eventTime": eventTime,
+      "asset": asset,
+      "delta": delta,
+      "clearTime": clearTime
+    };
+  }
 }
 
 class WsExecutionReport {
@@ -123,6 +164,42 @@ class WsExecutionReport {
         cumQuoteAssetQty = double.parse(m['Z']),
         lastQuoteAssetQty = double.parse(m['Y']),
         quoteQty = double.parse(m['Q']);
+
+  // toJson
+  Map toJson() {
+    return {
+      "eventType": eventType,
+      "eventTime": eventTime,
+      "symbol": symbol,
+      "clientOrderId": clientOrderId,
+      "side": side.str,
+      "orderType": orderType.str,
+      "timeInForce": timeInForce.str,
+      "qty": qty,
+      "price": price,
+      "stopPrice": stopPrice,
+      "icebergQty": icebergQty,
+      "orderListID": orderListID,
+      "origClientOrderId": origClientOrderId,
+      "executionType": executionType,
+      "orderStatus": orderStatus.str,
+      "orderRejectReason": orderRejectReason,
+      "orderId": orderId,
+      "lastExecutedQty": lastExecutedQty,
+      "cumFilledQty": cumFilledQty,
+      "lastExecutedPrice": lastExecutedPrice,
+      "commissionAmount": commissionAmount,
+      "commissionAsset": commissionAsset,
+      "transactionTime": transactionTime,
+      "tradeId": tradeId,
+      "isOnTheBook": isOnTheBook,
+      "isMakerSide": isMakerSide,
+      "orderCreationTime": orderCreationTime,
+      "cumQuoteAssetQty": cumQuoteAssetQty,
+      "lastQuoteAssetQty": lastQuoteAssetQty,
+      "quoteQty": quoteQty
+    };
+  }
 }
 
 class WsOcoOrder {
@@ -134,6 +211,15 @@ class WsOcoOrder {
       : symbol = m['s'],
         orderId = m['i'],
         clientOrderId = m['c'];
+
+  // toJson
+  Map toJson() {
+    return {
+      "symbol": symbol,
+      "orderId": orderId,
+      "clientOrderId": clientOrderId
+    };
+  }
 }
 
 class WsListOrderStatus {
@@ -160,13 +246,38 @@ class WsListOrderStatus {
         listRejectReason = m['r'],
         listClientOrderId = m['C'],
         transactionTime = m['T'],
-        orders = (m['O'] as List<dynamic>).map((e) => WsOcoOrder.fromMap(e)).toList();
+        orders = (m['O'] as List<dynamic>)
+            .map((e) => WsOcoOrder.fromMap(e))
+            .toList();
+
+  // toJson
+  Map toJson() {
+    return {
+      "eventType": eventType,
+      "eventTime": eventTime,
+      "symbol": symbol,
+      "orderListId": orderListId,
+      "contingencyType": contingencyType,
+      "listStatusType": listStatusType,
+      "listOrderStatus": listOrderStatus,
+      "listRejectReason": listRejectReason,
+      "listClientOrderId": listClientOrderId,
+      "transactionTime": transactionTime,
+      "orders": orders.map((e) => e.toJson()).toList
+    };
+  }
 }
 
 class DepthOrder {
   double price;
   double qty;
+
   DepthOrder.fromList(List l)
       : price = l[0],
         qty = l[1];
+
+  // toJson
+  Map toJson() {
+    return {"price": price, "qty": qty};
+  }
 }

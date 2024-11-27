@@ -1,6 +1,6 @@
 // import 'dart:async';
 
-import 'package:binance_spot/binance_spot.dart';
+import 'package:binance_spot_plus/binance_spot_plus.dart';
 // import 'package:flutter/material.dart' hide Interval;
 
 void main() async {

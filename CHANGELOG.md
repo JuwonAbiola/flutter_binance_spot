@@ -1,3 +1,8 @@
+## 0.0.3
+
+* Upgrade dependencies to latest versions to compatible with Flutter 3
+* Add toJson methods to all beans
+
 ## 0.0.2
 
 * Various bug fixes
