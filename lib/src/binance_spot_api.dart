@@ -1,5 +1,5 @@
-import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:convert/convert.dart';
 import 'package:crypto/crypto.dart';
@@ -10,12 +10,24 @@ import 'package:web_socket_channel/io.dart';
 import 'rest/enums.dart';
 
 class BinanceSpot {
-  final String endpoint = "api.binance.com";
-  final String wsEndpoint = "wss://stream.binance.com:9443";
-  final String prefix = "api/v3";
-  int timestampDifference = 0;
   String? _apiKey;
   String? _apiSecret;
+  late String endpoint;
+  late String wsEndpoint;
+
+  final String prefix = "api/v3";
+
+  int timestampDifference = 0;
+
+  set testnet(bool value) {
+    if (value) {
+      endpoint = "testnet.binance.com";
+      wsEndpoint = "wss://testnet.binance.vision";
+    } else {
+      endpoint = 'https://api.binance.com';
+      wsEndpoint = 'wss://stream.binance.com:9443/ws';
+    }
+  }
 
   set apiKey(String key) {
     _apiKey = key;
@@ -28,9 +40,11 @@ class BinanceSpot {
   BinanceSpot({
     String? key,
     String? secret,
+    bool testnet = false,
   }) {
     _apiKey = key;
     _apiSecret = secret;
+    this.testnet = testnet;
   }
 
   /// Call this function if you keep getting an error about server time
@@ -59,7 +73,9 @@ class BinanceSpot {
   }) async {
     params ??= {};
     if (timestampRequired) {
-      params['timestamp'] = (DateTime.now().millisecondsSinceEpoch - timestampDifference).toString();
+      params['timestamp'] =
+          (DateTime.now().millisecondsSinceEpoch - timestampDifference)
+              .toString();
     }
 
     if (signatureRequired) {
@@ -117,7 +133,8 @@ class BinanceSpot {
 
     if (result is Map) {
       if (result.containsKey("code") && result['code'] != 200) {
-        return Left("Binance API returned error ${result["code"]} : ${result["msg"]}");
+        return Left(
+            "Binance API returned error ${result["code"]} : ${result["msg"]}");
       }
     }
 
