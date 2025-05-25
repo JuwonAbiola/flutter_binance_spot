@@ -25,7 +25,7 @@ class BinanceSpot {
       wsEndpoint = "wss://testnet.binance.vision";
     } else {
       endpoint = 'https://api.binance.com';
-      wsEndpoint = 'wss://stream.binance.com:9443/ws';
+      wsEndpoint = 'wss://stream.binance.com:9443';
     }
   }
 
